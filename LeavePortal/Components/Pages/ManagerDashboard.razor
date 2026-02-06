@@ -1,0 +1,83 @@
+﻿@page "/manager"
+@rendermode InteractiveServer
+@inject LeavePortal.Services.LeaveService LeaveService
+@inject LeavePortal.Services.AuthService AuthService
+
+<h2 class="dashboard-title">Manager Dashboard</h2>
+
+<div class="dashboard-container">
+
+    <div class="card leave-card">
+        <div class="card-header">
+            <h3>Pending Leave Requests</h3>
+        </div>
+
+        <table class="leave-table">
+            <thead>
+                <tr>
+                    <th>Employee Name</th>
+                    <th>Date</th>
+                    <th>Reason</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (LeaveRequests is null)
+                {
+                    <tr><td colspan="4">Loading...</td></tr>
+                }
+                else if (!LeaveRequests.Any())
+                {
+                    <tr><td colspan="4">No leave requests</td></tr>
+                }
+                else
+                {
+                    @foreach (var leave in LeaveRequests)
+                    {
+                        <tr>
+                            <td>@leave.EmployeeId</td>
+                            <td>@leave.LeaveDate.ToShortDateString()</td>
+                            <td>@leave.Reason</td>
+                            <td>
+                                <select class="form-select" @onchange="async e => await ChangeStatus(leave, e.Value?.ToString())" value="@leave.Status.ToString()">
+                                    <option value="Pending">Pending</option>
+                                    <option value="Approved">Approved</option>
+                                    <option value="Rejected">Rejected</option>
+                                </select>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+@code {
+    private List<LeaveRequest> LeaveRequests = new List<LeaveRequest>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadLeaves();
+    }
+
+    private async Task LoadLeaves()
+    {
+        if (AuthService.CurrentUser is not null)
+        {
+            // Only managers can access all leave requests
+            LeaveRequests = await LeaveService.GetLeavesForUserAsync(AuthService.CurrentUser);
+        }
+    }
+
+    private async Task ChangeStatus(LeaveRequest leave, string? newStatus)
+    {
+        if (Enum.TryParse<LeaveStatus>(newStatus, out var status))
+        {
+            await LeaveService.UpdateLeaveRequestAsync(leave.Id, status);
+            // Reload list to reflect status change
+            await LoadLeaves();
+        }
+    }
+}

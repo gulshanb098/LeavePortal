@@ -1,0 +1,62 @@
+﻿@page "/"
+@rendermode InteractiveServer
+@inject AuthService AuthService
+@inject NavigationManager Navigation
+
+<div class="login-container">
+    <div class="login-card">
+        <h2 class="login-title">Login</h2>
+
+        <EditForm Model="this" OnValidSubmit="HandleLogin">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <div class="form-field">
+                <label>Username</label>
+                <InputText @bind-Value="userName" class="form-control" />
+                <ValidationMessage For="@(() => userName)" />
+            </div>
+
+            <div class="form-field">
+                <label>Password</label>
+                <InputText @bind-Value="password" type="password" class="form-control" />
+                <ValidationMessage For="@(() => password)" />
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Login</button>
+
+            @if (!string.IsNullOrEmpty(errorMessage))
+            {
+                <div class="alert alert-danger mt-2">@errorMessage</div>
+            }
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    private string userName = string.Empty;
+    private string password = string.Empty;
+    private string errorMessage = string.Empty;
+
+    private async Task HandleLogin()
+    {
+        var success = await AuthService.LoginAsync(userName, password);
+
+        if (success && AuthService.CurrentUser != null)
+        {
+            if (AuthService.CurrentUser.Role == UserRole.Employee)
+            {
+                Navigation.NavigateTo("/employee");
+            }
+            else if (AuthService.CurrentUser.Role == UserRole.Manager)
+            {
+                Navigation.NavigateTo("/manager");
+            }
+        }
+        else
+        {
+            errorMessage = "Invalid username or password";
+        }
+
+    }
+}

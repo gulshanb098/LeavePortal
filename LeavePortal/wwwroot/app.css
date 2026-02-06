@@ -1,0 +1,569 @@
+html, body
+{
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+a, .btn-link
+{
+    color: #006bb7;
+}
+
+.btn-primary
+{
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus
+{
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+.content
+{
+    padding-top: 1.1rem;
+}
+
+h1:focus
+{
+    outline: none;
+}
+
+.valid.modified:not([type=checkbox])
+{
+    outline: 1px solid #26b050;
+}
+
+.invalid
+{
+    outline: 1px solid #e50000;
+}
+
+.validation-message
+{
+    color: #e50000;
+}
+
+.blazor-error-boundary
+{
+    background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTYiIGhlaWdodD0iNDkiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIG92ZXJmbG93PSJoaWRkZW4iPjxkZWZzPjxjbGlwUGF0aCBpZD0iY2xpcDAiPjxyZWN0IHg9IjIzNSIgeT0iNTEiIHdpZHRoPSI1NiIgaGVpZ2h0PSI0OSIvPjwvY2xpcFBhdGg+PC9kZWZzPjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwMCkiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0yMzUgLTUxKSI+PHBhdGggZD0iTTI2My41MDYgNTFDMjY0LjcxNyA1MSAyNjUuODEzIDUxLjQ4MzcgMjY2LjYwNiA1Mi4yNjU4TDI2Ny4wNTIgNTIuNzk4NyAyNjcuNTM5IDUzLjYyODMgMjkwLjE4NSA5Mi4xODMxIDI5MC41NDUgOTIuNzk1IDI5MC42NTYgOTIuOTk2QzI5MC44NzcgOTMuNTEzIDI5MSA5NC4wODE1IDI5MSA5NC42NzgyIDI5MSA5Ny4wNjUxIDI4OS4wMzggOTkgMjg2LjYxNyA5OUwyNDAuMzgzIDk5QzIzNy45NjMgOTkgMjM2IDk3LjA2NTEgMjM2IDk0LjY3ODIgMjM2IDk0LjM3OTkgMjM2LjAzMSA5NC4wODg2IDIzNi4wODkgOTMuODA3MkwyMzYuMzM4IDkzLjAxNjIgMjM2Ljg1OCA5Mi4xMzE0IDI1OS40NzMgNTMuNjI5NCAyNTkuOTYxIDUyLjc5ODUgMjYwLjQwNyA1Mi4yNjU4QzI2MS4yIDUxLjQ4MzcgMjYyLjI5NiA1MSAyNjMuNTA2IDUxWk0yNjMuNTg2IDY2LjAxODNDMjYwLjczNyA2Ni4wMTgzIDI1OS4zMTMgNjcuMTI0NSAyNTkuMzEzIDY5LjMzNyAyNTkuMzEzIDY5LjYxMDIgMjU5LjMzMiA2OS44NjA4IDI1OS4zNzEgNzAuMDg4N0wyNjEuNzk1IDg0LjAxNjEgMjY1LjM4IDg0LjAxNjEgMjY3LjgyMSA2OS43NDc1QzI2Ny44NiA2OS43MzA5IDI2Ny44NzkgNjkuNTg3NyAyNjcuODc5IDY5LjMxNzkgMjY3Ljg3OSA2Ny4xMTgyIDI2Ni40NDggNjYuMDE4MyAyNjMuNTg2IDY2LjAxODNaTTI2My41NzYgODYuMDU0N0MyNjEuMDQ5IDg2LjA1NDcgMjU5Ljc4NiA4Ny4zMDA1IDI1OS43ODYgODkuNzkyMSAyNTkuNzg2IDkyLjI4MzcgMjYxLjA0OSA5My41Mjk1IDI2My41NzYgOTMuNTI5NSAyNjYuMTE2IDkzLjUyOTUgMjY3LjM4NyA5Mi4yODM3IDI2Ny4zODcgODkuNzkyMSAyNjcuMzg3IDg3LjMwMDUgMjY2LjExNiA4Ni4wNTQ3IDI2My41NzYgODYuMDU0N1oiIGZpbGw9IiNGRkU1MDAiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvZz48L3N2Zz4=) no-repeat 1rem/1.8rem, #b32121;
+    padding: 1rem 1rem 1rem 3.7rem;
+    color: white;
+}
+
+    .blazor-error-boundary::after
+    {
+        content: "An error has occurred."
+    }
+
+.darker-border-checkbox.form-check-input
+{
+    border-color: #929292;
+}
+
+.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder
+{
+    color: var(--bs-secondary-color);
+    text-align: end;
+}
+
+.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder
+{
+    text-align: start;
+}
+
+
+/*Header*/
+@media (max-width: 768px)
+{
+    .header-container
+    {
+        padding: 1rem;
+    }
+
+    .logo-text
+    {
+        font-size: 1.25rem;
+    }
+
+    .header-right
+    {
+        gap: 1rem;
+    }
+
+    .user-details
+    {
+        display: none;
+    }
+
+    .logout-btn
+    {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.85rem;
+    }
+}
+
+.app-header
+{
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-container
+{
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-left
+{
+    display: flex;
+    align-items: center;
+}
+
+.logo-section
+{
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+    .logo-section:hover
+    {
+        transform: translateY(-2px);
+    }
+
+.logo-icon
+{
+    width: 32px;
+    height: 32px;
+    color: white;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.logo-text
+{
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 0.5px;
+}
+
+.header-right
+{
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.user-info
+{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.user-avatar
+{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.25);
+    border: 2px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.user-details
+{
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+.user-name
+{
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.user-role
+{
+    font-size: 0.8rem;
+    opacity: 0.9;
+}
+
+.logout-btn
+{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1.5px solid white;
+    border-radius: 6px;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+}
+
+    .logout-btn:hover
+    {
+        background: white;
+        color: #667eea;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .logout-btn:active
+    {
+        transform: translateY(0);
+    }
+
+.logout-icon
+{
+    width: 18px;
+    height: 18px;
+}
+
+.app-footer
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1rem;
+    background-color: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+    margin-top: auto;
+}
+
+.footer-text
+{
+    margin: 0;
+    color: #6c757d;
+    font-size: 0.875rem;
+}
+
+/*Login*/
+
+.login-container
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.login-card
+{
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-title
+{
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #333;
+    font-size: 1.5rem;
+}
+
+.form-field
+{
+    margin-bottom: 1.5rem;
+}
+
+.form-label
+{
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #555;
+    font-weight: 500;
+}
+
+.form-control
+{
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+    .form-control:focus
+    {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+.text-danger
+{
+    color: #e50000;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    display: block;
+}
+
+.btn
+{
+    padding: 0.75rem 1rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary
+{
+    background-color: #667eea;
+    color: white;
+}
+
+.btn-primary:hover
+{
+    background-color: #5568d3;
+}
+
+.btn-primary:active
+{
+    background-color: #4557b8;
+}
+
+.w-100
+{
+    width: 100%;
+}
+
+/*Employee Dashboard*/
+.dashboard-title
+{
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+.dashboard-container
+{
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.card
+{
+    background: #ffffff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    width: 100%;
+    max-width: 900px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover
+{
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+.card-header
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.card-header h3
+{
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+}
+
+.btn-new-leave
+{
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+}
+
+.leave-table
+{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.leave-table th,
+.leave-table td
+{
+    border: 1px solid #ddd;
+    padding: 0.75rem;
+    text-align: left;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.leave-table th
+{
+    background-color: #f5f5f5;
+    font-weight: 600;
+}
+
+.overlay
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.leave-form-card
+{
+    background: #fff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+    width: 400px;
+    max-width: 90%;
+    animation: fadeIn 0.3s ease;
+}
+
+.leave-form-card h3
+{
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.form-field
+{
+    margin-bottom: 1rem;
+}
+
+.form-field label
+{
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #555;
+}
+
+.form-control
+{
+    width: 100%;
+    padding: 0.65rem 1rem;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    background-color: #f9f9f9;
+}
+
+.form-control:focus
+{
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102,126,234,0.15);
+}
+
+.form-actions
+{
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.btn-cancel
+{
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 0.55rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-cancel:hover
+{
+    background: #c82333;
+}
+
+@keyframes fadeIn
+{
+    from
+    {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to
+    {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@media (max-width: 768px)
+{
+    .leave-form-card
+    {
+        width: 95%;
+        padding: 1.5rem;
+    }
+
+    .leave-table th, .leave-table td
+    {
+        font-size: 0.85rem;
+        padding: 0.5rem;
+    }
+
+    .btn-new-leave
+    {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+    }
+}
+
+.text-danger
+{
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+    display: block;
+    color: #e74c3c;
+}

@@ -1,0 +1,134 @@
+﻿@page "/employee"
+@rendermode InteractiveServer
+@inject LeavePortal.Services.LeaveService LeaveService
+@inject LeavePortal.Services.AuthService AuthService
+
+<h2 class="dashboard-title">Employee Dashboard</h2>
+
+<div class="dashboard-container">
+
+    <div class="card leave-card">
+        <div class="card-header">
+            <h3>Leave History</h3>
+            <button class="btn btn-primary btn-new-leave" @onclick="ShowLeaveForm">
+                + New Leave Request
+            </button>
+        </div>
+
+        <table class="leave-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Reason</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (LeaveRequests is null)
+                {
+                    <tr><td colspan="3">Loading...</td></tr>
+                }
+                else if (!LeaveRequests.Any())
+                {
+                    <tr><td colspan="3">No leaves found</td></tr>
+                }
+                else
+                {
+                    @foreach (var leave in LeaveRequests)
+                    {
+                        <tr>
+                            <td>@leave.LeaveDate.ToShortDateString()</td>
+                            <td>@leave.Reason</td>
+                            <td>@leave.Status</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+@if (IsLeaveFormVisible)
+{
+    <div class="overlay">
+        <div class="leave-form-card">
+            <h3>New Leave Request</h3>
+            <EditForm Model="NewLeaveRequest" OnValidSubmit="SubmitLeaveRequest">
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+
+                <div class="form-field">
+                    <label>Leave Date</label>
+                    <InputDate @bind-Value="NewLeaveRequest.LeaveDate" class="form-control" />
+                    <ValidationMessage For="@(() => NewLeaveRequest.LeaveDate)" />
+                </div>
+
+                <div class="form-field">
+                    <label>Reason</label>
+                    <InputTextArea @bind-Value="NewLeaveRequest.Reason" class="form-control" rows="3" />
+                    <ValidationMessage For="@(() => NewLeaveRequest.Reason)" />
+                </div>
+
+                @if (!string.IsNullOrEmpty(errorMessage))
+                {
+                    <div class="alert alert-danger mt-2">@errorMessage</div>
+                }
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="button" class="btn btn-cancel" @onclick="HideLeaveForm">Cancel</button>
+                </div>
+            </EditForm>
+        </div>
+    </div>
+}
+
+@code {
+    private bool IsLeaveFormVisible = false;
+    private string errorMessage = string.Empty;
+    private LeaveRequest NewLeaveRequest = new LeaveRequest();
+    private List<LeaveRequest> LeaveRequests = new List<LeaveRequest>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadLeaves();
+	}
+
+    private async Task LoadLeaves()
+    {
+        if (AuthService.CurrentUser is not null)
+        {
+            LeaveRequests = await LeaveService.GetLeavesForUserAsync(AuthService.CurrentUser);
+        }
+    }
+
+    private void ShowLeaveForm()
+    {
+        IsLeaveFormVisible = true;
+    }
+
+    private void HideLeaveForm()
+    {
+        IsLeaveFormVisible = false;
+        NewLeaveRequest = new LeaveRequest();
+    }
+
+    private async Task SubmitLeaveRequest()
+    {
+        if (AuthService.CurrentUser is not null)
+        {
+            try
+            {
+                await LeaveService.ApplyLeaveAsync(AuthService.CurrentUser, NewLeaveRequest);
+                await LoadLeaves();
+                HideLeaveForm();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                errorMessage = ex.Message;
+            }
+        }
+    }
+}

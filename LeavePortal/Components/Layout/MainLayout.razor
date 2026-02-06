@@ -1,0 +1,41 @@
+﻿@inherits LayoutComponentBase
+@implements IDisposable
+@inject AuthService AuthService
+
+<div class="min-vh-100 d-flex flex-column">
+    <header class="app-header">
+        <div class="header-container">
+            <div class="header-left">
+                <div class="logo-section">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span class="logo-text">Leave Portal</span>
+                </div>
+            </div>
+
+            <Header />
+        </div>
+    </header>
+
+    <main class="container-fluid p-0">
+        @Body
+    </main>
+
+    <footer class="app-footer">
+        <p class="footer-text">© 2026 Leave Portal</p>
+    </footer>
+</div>
+
+@code {
+    protected override void OnInitialized()
+    {
+        AuthService.OnAuthStateChanged += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        AuthService.OnAuthStateChanged -= StateHasChanged;
+    }
+}
